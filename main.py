@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import gui
-from PyQt5.QtWidgets import QMainWindow, QFileDialog, QApplication
-from PyQt5.QtCore import QTimer, QSize, Qt
-from PyQt5.QtGui import QPixmap, QIcon, QPalette, QColor
+
 import pygame
 from mutagen import File, MutagenError
+from PyQt5.QtCore import QSize, Qt, QTimer
+from PyQt5.QtGui import QColor, QIcon, QPalette, QPixmap
+from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
+
+import gui
 import resources
 
 
