@@ -34,7 +34,7 @@ class Label(QtWidgets.QLabel):
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.setFixedSize(500, 591)
+        MainWindow.setFixedSize(500, 61)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label_name_song = QtWidgets.QLabel(self.centralwidget)
@@ -48,7 +48,7 @@ class Ui_MainWindow(object):
         self.label_name_song.setAlignment(QtCore.Qt.AlignCenter)
         self.label_name_song.setObjectName("label_name_song")
         self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(0, 530, 500, 61))
+        self.widget.setGeometry(QtCore.QRect(0, 0, 500, 61))
         self.widget.setStyleSheet("background-color: rgb(71, 64, 64);")
         self.widget.setObjectName("widget")
         self.button_play = QtWidgets.QPushButton(self.widget)
@@ -146,12 +146,6 @@ class Ui_MainWindow(object):
         self.label_pic_volume.raise_()
         self.label_tracklist_info.raise_()
         self.progress_bar.raise_()
-        self.label_album_cover = QtWidgets.QLabel(self.centralwidget)
-        self.label_album_cover.setGeometry(QtCore.QRect(0, 0, 500, 500))
-        self.label_album_cover.setObjectName("label_album_cover")
-        self.widget.raise_()
-        self.label_name_song.raise_()
-        self.label_album_cover.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -166,4 +160,3 @@ class Ui_MainWindow(object):
         self.label_vol_value.setText(_translate("MainWindow", "TextLabel"))
         self.label_pic_volume.setText(_translate("MainWindow", "TextLabel"))
         self.label_7.setText(_translate("MainWindow", "/"))
-        self.label_album_cover.setText(_translate("MainWindow", "TextLabel"))

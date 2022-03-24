@@ -7,7 +7,8 @@ import pygame
 from mutagen import File, MutagenError
 from PyQt5.QtCore import QSize, Qt, QTimer
 from PyQt5.QtGui import QColor, QIcon, QPalette, QPixmap
-from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
+from PyQt5.QtWidgets import (QApplication, QDesktopWidget, QFileDialog,
+                             QMainWindow)
 
 import gui
 import resources
@@ -27,7 +28,6 @@ class Exx(QMainWindow, gui.Ui_MainWindow):
         self.initButtonSignal()
         self.initButtonIcon()
         self.slider_signal_init()
-        self.launchAlbumCover()
         self.initLabel()
         self.initKeyGrabber()
 
@@ -145,35 +145,6 @@ class Exx(QMainWindow, gui.Ui_MainWindow):
 
             self.state_playing = 'play'
 
-    def getAlbumCover(self, song=None):
-        try:
-            file = File(song)
-            artwork = file.tags['APIC:']
-        except (KeyError, TypeError, MutagenError):
-            self.launchAlbumCover()
-        else:
-            pixmap = QPixmap()
-            pixmap.loadFromData(artwork.data)
-            self.label_album_cover.setPixmap(
-                pixmap.scaled(
-                    500,
-                    500,
-                    Qt.KeepAspectRatio,
-                    Qt.SmoothTransformation
-                )
-            )
-
-    def launchAlbumCover(self):
-        self.label_album_cover.setPixmap(
-            QPixmap(
-                ':/sourse/pass.jpg'
-            ).scaled(
-                500,
-                500,
-                Qt.KeepAspectRatio,
-                Qt.SmoothTransformation
-            )
-        )
 
     def getNameSong(self, song=None):
         try:
@@ -373,6 +344,15 @@ class Exx(QMainWindow, gui.Ui_MainWindow):
     def closeEvent(self, event):
         pygame.quit()
 
+    def location_on_the_screen(self):
+        ag = QDesktopWidget().availableGeometry()
+        sg = QDesktopWidget().screenGeometry()
+
+        widget = self.geometry()
+        x = ag.width() - widget.width()
+        y = 2 * ag.height() - sg.height() - widget.height()
+        self.move(x, y)
+
 
 def main():
     app = QApplication(sys.argv)
@@ -381,6 +361,7 @@ def main():
     palette.setColor(QPalette.Highlight, QColor(200, 200, 150).lighter())
     app.setPalette(palette)
     window = Exx()
+    window.location_on_the_screen()
     window.show()
     app.exec_()
 
