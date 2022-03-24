@@ -15,6 +15,10 @@ from key_grabber import KeyGrabber
 
 
 class Exx(QMainWindow, gui.Ui_MainWindow):
+    keygrabber: KeyGrabber
+    mute_val = False
+    state_playing = None
+
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -25,12 +29,9 @@ class Exx(QMainWindow, gui.Ui_MainWindow):
         self.slider_signal_init()
         self.launchAlbumCover()
         self.initLabel()
-        self.mute_val = False
-        self.state_playing = None
+        self.initKeyGrabber()
 
-        self.keygrabber = KeyGrabber()
-        self.keygrabber.start()
-        self.keygrabber.play_pause_pressed.connect(self.playingEvent)
+
 
     def initUI(self):
         self.setWindowTitle('Music player v0.99')
@@ -42,6 +43,11 @@ class Exx(QMainWindow, gui.Ui_MainWindow):
     def initPygame(self):
         pygame.init()
         pygame.mixer.init()
+
+    def initKeyGrabber(self):
+        self.keygrabber = KeyGrabber()
+        self.keygrabber.play_pause_pressed.connect(self.playingEvent)
+        self.keygrabber.start()
 
     def initButtonSignal(self):
         self.button_play.clicked.connect(self.playingEvent)
