@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
 
 import gui
 import resources
+from key_grabber import KeyGrabber
 
 
 class Exx(QMainWindow, gui.Ui_MainWindow):
@@ -26,6 +27,10 @@ class Exx(QMainWindow, gui.Ui_MainWindow):
         self.initLabel()
         self.mute_val = False
         self.state_playing = None
+
+        self.keygrabber = KeyGrabber()
+        self.keygrabber.start()
+        self.keygrabber.play_pause_pressed.connect(self.playingEvent)
 
     def initUI(self):
         self.setWindowTitle('Music player v0.99')
