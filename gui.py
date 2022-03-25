@@ -34,7 +34,7 @@ class Label(QtWidgets.QLabel):
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.setFixedSize(500, 61)
+        MainWindow.setFixedSize(500, 61*2)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label_name_song = QtWidgets.QLabel(self.centralwidget)

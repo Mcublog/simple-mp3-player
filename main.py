@@ -115,7 +115,6 @@ class Exx(QMainWindow, gui.Ui_MainWindow):
             pygame.mixer.music.play()
         except pygame.error as err:
             print(err)
-            self.getAlbumCover()
             self.label_name_song.setText('Unsupported format')
             if self.state_playing is not None:
                 self.stop()
@@ -129,9 +128,6 @@ class Exx(QMainWindow, gui.Ui_MainWindow):
 
             # громкость звука перед началом проигрывания
             self.setVolume()
-
-            # отображение обложки
-            self.getAlbumCover(self.name_song)
 
             self.button_play.setEnabled(True)
             self.button_stop.setEnabled(True)
